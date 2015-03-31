@@ -31,9 +31,9 @@ public class AppiumDemoTest1 {
 	@Before
 	public void setUp() throws Exception {
 		appiumDriver=UtilityClass.getDeviceDriver("ANDROID","E8AZCY224672","Zenfone5");
-		//appiumDriver.closeApp();
-		//appiumDriver.installApp("C:/Users/Karthick/Downloads/myhcl.apk");
-		//((AndroidDriver)appiumDriver).startActivity("com.hcl.myapprovals",".MyHclActivity");
+		
+		appiumDriver.installApp("C:/Users/Karthick/Downloads/myhcl.apk");
+		((AndroidDriver)appiumDriver).startActivity("com.hcl.myapprovals",".MyHclActivity");
 		
 	
 	}

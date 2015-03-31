@@ -46,18 +46,20 @@ public class MyHclLoginPage {
 	}
 	public void enterUsername(String username)
 	{
-		WaitClass.waitFor(appiumDriver, USERNAME, 60);
-		appiumDriver.findElement(USERNAME).sendKeys(username);
+		MobileElement userName=(MobileElement) appiumDriver.findElement(USERNAME);
+		userName.clear();
+		userName.sendKeys(username);
 	}
 	public void enterPassword(String password)
 	{
-		WaitClass.waitFor(appiumDriver, PASSWORD, 60);
-		appiumDriver.findElement(PASSWORD).sendKeys(password);
+		MobileElement passWord=(MobileElement) appiumDriver.findElement(PASSWORD);
+		passWord.clear();
+		passWord.sendKeys(password);
+		
 	}
 	public void selectDomain(String domain)
 	{
 		MobileElement mobileElement=null;
-		WaitClass.waitFor(appiumDriver,DOMAINBUTTON, 60);
 		appiumDriver.findElement(DOMAINBUTTON).click();
 		WaitClass.waitFor(appiumDriver,DOMAINSELECTIONLIST, 60);
 		List<WebElement> listDomain=appiumDriver.findElements(DOMAINSELECTIONLIST);
