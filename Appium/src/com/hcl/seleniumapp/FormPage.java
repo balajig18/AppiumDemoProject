@@ -1,9 +1,11 @@
-package com.hcl.usaa.appium;
+package com.hcl.seleniumapp;
 
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import com.hcl.usaa.appium.WaitClass;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
