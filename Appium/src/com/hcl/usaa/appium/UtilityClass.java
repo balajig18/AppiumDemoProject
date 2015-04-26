@@ -31,7 +31,7 @@ public static AppiumDriver getDeviceDriver(String OS,String DeviceName,String Ap
 		options.setCapability("appActivity", ".Settings");
 		
 		try {
-			appiumDriver=new AndroidDriver(new URL("http://localhost:4720/wd/hub"), options);
+			appiumDriver=new AndroidDriver(new URL("http://localhost:4723/wd/hub"), options);
 		
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block

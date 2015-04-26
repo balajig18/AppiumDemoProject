@@ -1,7 +1,10 @@
 package com.hcl.usaa.appium;
 
+import java.util.concurrent.TimeUnit;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
@@ -9,6 +12,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openqa.selenium.support.PageFactory;
 
 import sun.misc.FpUtils;
 
@@ -36,19 +40,31 @@ public class AppiumAppTest {
 		System.out.println("Inside Test");
 		SeleniumTestAppHomePage appHomePage=new SeleniumTestAppHomePage(appiumDriver);
 		appHomePage.clickOnRegistrationButton();
-		FormPage formPage=new FormPage(appiumDriver);
+		/*FormPage formPage=new FormPage(appiumDriver);
 		formPage.enterUserName("balaji");
 		formPage.enterEmail("xx@gg.com");
 		formPage.enterPassword("adfadf");
 		formPage.enterName("gadg");
-		formPage.selectProgramLanguage("text");
-		formPage.clickOnRegister();
+		formPage.selectProgramLanguage("Java");
+		formPage.clickOnRegister();*/
+		PageObjectAppium pageObjectAppium=new PageObjectAppium(appiumDriver);
+		
+		PageFactory.initElements(new AppiumFieldDecorator(appiumDriver,10,TimeUnit.SECONDS),
+				pageObjectAppium);
+		pageObjectAppium.enterUserName("balaji");
+		pageObjectAppium.enterEmail("xx@gg.com");
+		pageObjectAppium.enterPassword("adfadf");
+		pageObjectAppium.enterName("gadg");
+		pageObjectAppium.selectProgramLanguage("Java");
+		pageObjectAppium.clickOnAddCheck();
+		pageObjectAppium.clickOnRegister();
+		
 	} 
 	@After
 	public void tearDown()
 	{
 		appiumDriver.closeApp();
-		appiumDriver.close();
+		//appiumDriver.close();
 		appiumDriver.quit();
 	}
 }
