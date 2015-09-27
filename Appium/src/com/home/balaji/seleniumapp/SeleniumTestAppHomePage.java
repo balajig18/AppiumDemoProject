@@ -1,4 +1,4 @@
-package com.hcl.seleniumapp;
+package com.home.balaji.seleniumapp;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -13,7 +13,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 
-import com.hcl.usaa.appium.WaitClass;
+import com.home.balaji.appium.WaitClass;
 import com.home.base.BasePage;
 import com.home.exception.PageNotLoadedException;
 

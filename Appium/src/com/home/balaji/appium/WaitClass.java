@@ -1,4 +1,4 @@
-package com.hcl.usaa.appium;
+package com.home.balaji.appium;
 import io.appium.java_client.AppiumDriver;
 
 import java.util.NoSuchElementException;

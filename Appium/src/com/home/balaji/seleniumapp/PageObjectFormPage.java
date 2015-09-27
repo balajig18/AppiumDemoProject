@@ -1,4 +1,4 @@
-package com.hcl.seleniumapp;
+package com.home.balaji.seleniumapp;
 
 import java.util.List;
 
@@ -11,9 +11,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import com.hcl.usaa.appium.WaitClass;
+import com.home.balaji.appium.WaitClass;
 
-public class PageObjectAppium {
+public class PageObjectFormPage {
 	
 	@FindBy(id="io.selendroid.testapp:id/inputUsername")
 	public AndroidElement userName;
@@ -43,7 +43,7 @@ public class PageObjectAppium {
 	private AppiumDriver appiumDriver;
 	
 	
-	public PageObjectAppium(AppiumDriver appiumDriver)
+	public PageObjectFormPage(AppiumDriver appiumDriver)
 	{
 		this.appiumDriver=appiumDriver;
 	}

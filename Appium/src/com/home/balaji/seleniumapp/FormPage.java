@@ -1,4 +1,4 @@
-package com.hcl.seleniumapp;
+package com.home.balaji.seleniumapp;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,7 +12,7 @@ import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 
-import com.hcl.usaa.appium.WaitClass;
+import com.home.balaji.appium.WaitClass;
 import com.home.base.BasePage;
 import com.home.exception.PageNotLoadedException;
 

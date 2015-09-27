@@ -1,4 +1,4 @@
-package com.hcl.usaa.appium;
+package com.home.balaji.appium;
 import org.junit.Test;
 import org.junit.experimental.ParallelComputer;
 import org.junit.runner.JUnitCore;

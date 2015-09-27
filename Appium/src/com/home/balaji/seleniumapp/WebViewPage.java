@@ -1,4 +1,4 @@
-package com.hcl.seleniumapp;
+package com.home.balaji.seleniumapp;
 
 import java.util.List;
 import java.util.Set;
@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import com.hcl.usaa.appium.WaitClass;
+import com.home.balaji.appium.WaitClass;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;

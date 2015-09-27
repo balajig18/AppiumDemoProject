@@ -1,9 +1,10 @@
-package com.hcl.usaa.appium;
+package com.home.balaji.appium;
 import static org.junit.Assert.*;
 
 import java.net.URL;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 
@@ -21,22 +22,23 @@ import com.home.base.BaseTest;
 import com.home.exception.PageNotLoadedException;
 
 
-public class AppiumDemoTest2 extends BaseTest{
+public class AppiumDemoTest1 extends BaseTest{
 
-	public AppiumDriver appiumDriver=null;
-	private static final Logger LOGGER=Logger.getLogger(AppiumDemoTest2.class);
+	public AppiumDriver<MobileElement> appiumDriver=null;
+	private static final Logger LOGGER=Logger.getLogger(AppiumDemoTest1.class);
 	
 	@BeforeClass
 	public static void setUpClass()
 	{
 		BasicConfigurator.configure();
 	}
+	@SuppressWarnings("unchecked")
 	@Before
 	public void setUp() throws Exception {
-		appiumDriver=getDeviceDriver("ANDROID","emulator-5554","NexusEmulator");
-		//appiumDriver.closeApp();
-		//appiumDriver.installApp("C:/Users/Karthick/Downloads/myhcl.apk");
-		//((AndroidDriver)appiumDriver).startActivity("com.hcl.myapprovals",".MyHclActivity");
+		appiumDriver=getDeviceDriver("ANDROID","E8AZCY224672","Zenfone5");
+		
+		appiumDriver.installApp("C:/Users/Karthick/Downloads/myhcl.apk");
+		((AndroidDriver<MobileElement>)appiumDriver).startActivity("com.hcl.myapprovals",".MyHclActivity");
 		
 	
 	}
@@ -44,10 +46,9 @@ public class AppiumDemoTest2 extends BaseTest{
 	@Test
 	public void test() throws PageNotLoadedException {
 		MyHclLoginPage myHclLoginPage=new MyHclLoginPage(appiumDriver);
-		
 	
 		myHclLoginPage.enterUsername("balaji_ga");
-		myHclLoginPage.enterPassword("dec2014$");
+		myHclLoginPage.enterPassword("sep2015$");
 		myHclLoginPage.selectDomain("HCLTECH");
 		myHclLoginPage.clickOnLoginButton();
 		

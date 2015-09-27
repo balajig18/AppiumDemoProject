@@ -1,4 +1,4 @@
-package com.hcl.seleniumapp;
+package com.home.balaji.seleniumapp;
 
 import java.util.concurrent.TimeUnit;
 
