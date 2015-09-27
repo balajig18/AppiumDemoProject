@@ -1,38 +1,59 @@
 package com.hcl.seleniumapp;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.android.AndroidKeyCode;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 
 import com.hcl.usaa.appium.WaitClass;
+import com.home.base.BasePage;
+import com.home.exception.PageNotLoadedException;
 
-public class SeleniumTestAppHomePage {
+public class SeleniumTestAppHomePage extends BasePage{
 
 	public static final By WAITUNTILHOMELOAD=By.xpath("//android.widget.TextView[contains(@text,'Selendroid-test-app!')]");
 	
 	public static final By REGISTRATIONBUTTON=By.id("io.selendroid.testapp:id/startUserRegistration");
 	
 	public static final By CHROMEBUTTON=By.id("io.selendroid.testapp:id/buttonStartWebview");
+
+	private static final Logger LOGGER = Logger.getLogger(SeleniumTestAppHomePage.class);
 	
-	private AppiumDriver appiumDriver;
+
 	
-	
-	public SeleniumTestAppHomePage(AppiumDriver appiumDriver)
+	public SeleniumTestAppHomePage(AppiumDriver<MobileElement> appiumDriver) throws PageNotLoadedException
 	{
-		this.appiumDriver=appiumDriver;
+		super(appiumDriver);
 	}
 	public void clickOnRegistrationButton()
 	{
-		WaitClass.waitFor(appiumDriver, REGISTRATIONBUTTON, 60);
-		appiumDriver.findElement(REGISTRATIONBUTTON).click();
-		//appiumDriver.tap(2,appiumDriver.findElement(REGISTRATIONBUTTON),2);
+		((AndroidElement)waitForElement(REGISTRATIONBUTTON)).tap(1,1);
 	}
 	public void clickOnChromeButton()
 	{
-		WaitClass.waitFor(appiumDriver, CHROMEBUTTON, 60);
-		appiumDriver.findElement(CHROMEBUTTON).click();
-		//appiumDriver.tap(2,appiumDriver.findElement(REGISTRATIONBUTTON),2);
+		((AndroidElement)waitForElement(CHROMEBUTTON)).tap(1,1);
+	}
+	@Override
+	public boolean waitForPageLoad() {
+		boolean isPageLoaded=false;
+		try{
+			waitForElement(WAITUNTILHOMELOAD,60);
+			isPageLoaded=true;
+		}catch(TimeoutException timeoutException){
+			LOGGER.error("TimeoutException is occured");
+		}catch(NoSuchElementException noSuchElementException)
+		{
+			LOGGER.error("NoSuchElement Exception is occured");
+		}
+		return isPageLoaded;
+	
 	}
 }

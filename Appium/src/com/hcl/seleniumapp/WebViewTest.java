@@ -14,13 +14,13 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.support.PageFactory;
 
-import com.hcl.usaa.appium.AppiumDemoTest1;
-import com.hcl.usaa.appium.UtilityClass;
+import com.home.base.BaseTest;
+import com.home.exception.PageNotLoadedException;
 
-public class WebViewTest {
+public class WebViewTest extends BaseTest{
 	
 	public AppiumDriver appiumDriver=null;
-	private static final Logger LOGGER=Logger.getLogger(AppiumDemoTest1.class);
+	private static final Logger LOGGER=Logger.getLogger(WebViewTest.class);
 	
 	@BeforeClass
 	public static void setUpClass()
@@ -29,7 +29,7 @@ public class WebViewTest {
 	}
 	@Before
 	public void setUp() throws Exception {
-		appiumDriver=UtilityClass.getDeviceDriver("ANDROID","E8AZCY224672","Zenfone5");
+		appiumDriver=getDeviceDriver("ANDROID","E8AZCY224672","Zenfone5");
 		
 	
 		appiumDriver.installApp("D:/Android/selendroid-test-app-0.15.0.apk");
@@ -37,7 +37,7 @@ public class WebViewTest {
 	}
 	
 	@Test
-	public void test1()
+	public void test1() throws PageNotLoadedException
 	{
 		SeleniumTestAppHomePage appHomePage=new SeleniumTestAppHomePage(appiumDriver);
 		appHomePage.clickOnChromeButton();

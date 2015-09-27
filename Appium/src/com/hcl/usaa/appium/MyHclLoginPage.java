@@ -7,13 +7,17 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 
+import com.home.base.BasePage;
+import com.home.exception.PageNotLoadedException;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 
 
-public class MyHclLoginPage {
+public class MyHclLoginPage extends BasePage{
 
-	private AppiumDriver appiumDriver=null;
+	private AndroidDriver<MobileElement> androidDriver=null;
 	public boolean isPageLoaded=false;
 	
 	private static final By LOGINPAGE=By.xpath("//*[@class='android.view.View' and @index='1']");
@@ -27,15 +31,16 @@ public class MyHclLoginPage {
 	
 	private static final Logger LOGGER=Logger.getLogger(MyHclLoginPage.class);
 	
-	public MyHclLoginPage(AppiumDriver appiumDriver) {
-		this.appiumDriver=appiumDriver;
-		waitForPageLoad();
+	public MyHclLoginPage(AppiumDriver<MobileElement> appiumDriver) throws PageNotLoadedException {
+		super(appiumDriver);
+		androidDriver=getAndroidDriver();
 	}
 	
-	public void waitForPageLoad()
+	public boolean waitForPageLoad()
 	{
+		boolean isPageLoaded=false;
 		try{
-			WaitClass.waitFor(appiumDriver,LOGINPAGE, 60);
+			waitForElement(LOGINPAGE,60);
 			isPageLoaded=true;
 		}catch(TimeoutException timeoutException){
 			LOGGER.error("TimeoutException is occured");
@@ -43,33 +48,28 @@ public class MyHclLoginPage {
 		{
 			LOGGER.error("NoSuchElement Exception is occured");
 		}
+		return isPageLoaded;
 	}
+	
 	public void enterUsername(String username)
 	{
-		MobileElement userName=(MobileElement) appiumDriver.findElement(USERNAME);
-		userName.clear();
-		userName.sendKeys(username);
+		setTextField(USERNAME,username);
 	}
 	public void enterPassword(String password)
 	{
-		MobileElement passWord=(MobileElement) appiumDriver.findElement(PASSWORD);
-		passWord.clear();
-		passWord.sendKeys(password);
-		
+		setTextField(PASSWORD,password);
 	}
 	public void selectDomain(String domain)
 	{
-		MobileElement mobileElement=null;
-		appiumDriver.findElement(DOMAINBUTTON).click();
-		WaitClass.waitFor(appiumDriver,DOMAINSELECTIONLIST, 60);
-		List<WebElement> listDomain=appiumDriver.findElements(DOMAINSELECTIONLIST);
+		androidDriver.findElement(DOMAINBUTTON).click();
 		
-		for(WebElement domainChoice:listDomain)
+		List<MobileElement> listDomain=waitForListElement(DOMAINSELECTIONLIST, 40);
+		
+		for(MobileElement domainChoice:listDomain)
 		{
-			mobileElement=((MobileElement)domainChoice);
-			if(mobileElement.getText().equalsIgnoreCase(domain))
+			if(domainChoice.getText().equalsIgnoreCase(domain))
 			{
-				mobileElement.click();
+				domainChoice.click();
 				break;
 			}
 		}
@@ -77,7 +77,7 @@ public class MyHclLoginPage {
 	}
 	public void clickOnLoginButton()
 	{
-		WaitClass.waitFor(appiumDriver,LOGINBUTTON, 60);
-		appiumDriver.findElement(LOGINBUTTON).click();
+		MobileElement LoginButton=waitForElement(LOGINBUTTON);
+		LoginButton.click();
 	}
 }

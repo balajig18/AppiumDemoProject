@@ -17,8 +17,11 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import com.home.base.BaseTest;
+import com.home.exception.PageNotLoadedException;
 
-public class AppiumDemoTest2 {
+
+public class AppiumDemoTest2 extends BaseTest{
 
 	public AppiumDriver appiumDriver=null;
 	private static final Logger LOGGER=Logger.getLogger(AppiumDemoTest2.class);
@@ -30,7 +33,7 @@ public class AppiumDemoTest2 {
 	}
 	@Before
 	public void setUp() throws Exception {
-		appiumDriver=UtilityClass.getDeviceDriver("ANDROID","emulator-5554","NexusEmulator");
+		appiumDriver=getDeviceDriver("ANDROID","emulator-5554","NexusEmulator");
 		//appiumDriver.closeApp();
 		//appiumDriver.installApp("C:/Users/Karthick/Downloads/myhcl.apk");
 		//((AndroidDriver)appiumDriver).startActivity("com.hcl.myapprovals",".MyHclActivity");
@@ -39,12 +42,10 @@ public class AppiumDemoTest2 {
 	}
 
 	@Test
-	public void test() {
+	public void test() throws PageNotLoadedException {
 		MyHclLoginPage myHclLoginPage=new MyHclLoginPage(appiumDriver);
 		
-		if(!myHclLoginPage.isPageLoaded){
-			Assert.fail("Taking Time open to load");
-		}
+	
 		myHclLoginPage.enterUsername("balaji_ga");
 		myHclLoginPage.enterPassword("dec2014$");
 		myHclLoginPage.selectDomain("HCLTECH");
